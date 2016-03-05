@@ -1,10 +1,10 @@
 # Untappd Provider for OAuth 2.0 Client
 
-[![Join the chat](https://img.shields.io/badge/gitter-join-1DCE73.svg)](https://gitter.im/thephpshadowhand/oauth2-untappd)
-[![Build Status](https://img.shields.io/travis/shadowhand/oauth2-untappd.svg)](https://travis-ci.org/thephpshadowhand/oauth2-untappd)
-[![Code Coverage](https://img.shields.io/coveralls/thephpshadowhand/oauth2-untappd.svg)](https://coveralls.io/r/thephpshadowhand/oauth2-untappd)
-[![Code Quality](https://img.shields.io/scrutinizer/g/thephpshadowhand/oauth2-untappd.svg)](https://scrutinizer-ci.com/g/thephpshadowhand/oauth2-untappd/)
-[![License](https://img.shields.io/packagist/l/shadowhand/oauth2-untappd.svg)](https://github.com/thephpshadowhand/oauth2-untappd/blob/master/LICENSE)
+[![Join the chat](https://img.shields.io/badge/gitter-join-1DCE73.svg)](https://gitter.im/shadowhand/oauth2-untappd)
+[![Build Status](https://img.shields.io/travis/shadowhand/oauth2-untappd.svg)](https://travis-ci.org/shadowhand/oauth2-untappd)
+[![Code Coverage](https://img.shields.io/coveralls/shadowhand/oauth2-untappd.svg)](https://coveralls.io/r/shadowhand/oauth2-untappd)
+[![Code Quality](https://img.shields.io/scrutinizer/g/shadowhand/oauth2-untappd.svg)](https://scrutinizer-ci.com/g/shadowhand/oauth2-untappd/)
+[![License](https://img.shields.io/packagist/l/shadowhand/oauth2-untappd.svg)](https://github.com/shadowhand/oauth2-untappd/blob/master/LICENSE)
 [![Latest Stable Version](https://img.shields.io/packagist/v/shadowhand/oauth2-untappd.svg)](https://packagist.org/packages/shadowhand/oauth2-untappd)
 
 This package provides Untappd OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
