@@ -54,15 +54,8 @@ if (!empty($_GET['error'])) {
 
     // If we don't have an authorization code then get one
     $authUrl = $provider->getAuthorizationUrl();
-    $_SESSION['oauth2state'] = $provider->state;
     header('Location: ' . $authUrl);
     exit;
-
-} elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
-
-    // State is invalid, possible CSRF attack in progress
-    unset($_SESSION['oauth2state']);
-    exit('Invalid state');
 
 } else {
 
@@ -91,6 +84,8 @@ if (!empty($_GET['error'])) {
     echo $token->accessToken;
 }
 ```
+
+**NOTE:** Untappd does not support `state` passing for verification.
 
 ### Refreshing a Token
 
