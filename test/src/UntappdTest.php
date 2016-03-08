@@ -36,14 +36,26 @@ class UntappdTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('client_id', $query);
         $this->assertArrayHasKey('redirect_url', $query);
         $this->assertArrayHasKey('response_type', $query);
+
+        $this->assertSame('mock_client_id', $query['client_id']);
+        $this->assertSame('none', $query['redirect_url']);
     }
 
     public function testBaseAccessTokenUrl()
     {
         $url = $this->provider->getBaseAccessTokenUrl([]);
         $uri = parse_url($url);
+        parse_str($uri['query'], $query);
 
         $this->assertEquals('/oauth/authorize', $uri['path']);
+
+        $this->assertArrayHasKey('client_id', $query);
+        $this->assertArrayHasKey('client_secret', $query);
+        $this->assertArrayHasKey('redirect_url', $query);
+
+        $this->assertSame('mock_client_id', $query['client_id']);
+        $this->assertSame('mock_secret', $query['client_secret']);
+        $this->assertSame('none', $query['redirect_url']);
     }
 
     public function testResourceOwnerDetailsUrl()
@@ -56,6 +68,47 @@ class UntappdTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/v4/user/info', $uri['path']);
         $this->assertNotContains('mock_access_token', $url);
 
+    }
+
+    public function testAccessToken()
+    {
+        $response = m::mock('GuzzleHttp\Psr7\Response');
+
+        $response->shouldReceive('getHeader')
+            ->with('content-type')
+            ->andReturn(['application/json']);
+
+        $json = <<<EOJ
+{
+  "meta": {
+    "http_code": 200
+  },
+  "response": {
+    "access_token": "untappd_token"
+  }
+}
+EOJ;
+
+        $response->shouldReceive('getBody')
+            ->andReturn($json);
+
+        $provider = m::mock('Shadowhand\OAuth2\Client\Provider\Untappd[sendRequest]')
+            ->shouldAllowMockingProtectedMethods();
+
+        $provider->shouldReceive('sendRequest')
+            ->with(m::on(function ($request) {
+                $this->assertSame('GET', $request->getMethod());
+                return true;
+            }))
+            ->times(1)
+            ->andReturn($response);
+
+        $token = $provider->getAccessToken('authorization_code', [
+            'code' => 'mock-code',
+        ]);
+
+        $this->assertInstanceOf('League\OAuth2\Client\Token\AccessToken', $token);
+        $this->assertSame('untappd_token', $token->getToken());
     }
 
     public function testUserData()
@@ -154,7 +207,7 @@ EOJ;
         $json = <<<EOJ
 {
   "meta": {
-    "code": 500,
+    "http_code": 500,
     "error_detail": "The user has not authorized this application or the token is invalid.",
     "error_type": "invalid_auth",
     "developer_friendly": "The user has not authorized this application or the token is invalid.",

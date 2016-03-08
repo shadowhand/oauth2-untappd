@@ -21,17 +21,21 @@ class Untappd extends AbstractProvider
 
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://untappd.com/oauth/authorize';
+        // Untappd requires inclusion of additional params for verification
+        return 'https://untappd.com/oauth/authorize?' .
+            http_build_query(array_replace($params, [
+                'client_id' => $this->clientId,
+                'client_secret' => $this->clientSecret,
+                'redirect_url' => $this->redirectUri,
+            ]));
     }
 
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->appendQuery(
-            'https://api.untappd.com/v4/user/info',
+        return 'https://api.untappd.com/v4/user/info?' .
             http_build_query([
                 'access_token' => (string) $token,
-            ])
-        );
+            ]);
     }
 
     protected function getDefaultScopes()
@@ -57,18 +61,6 @@ class Untappd extends AbstractProvider
     protected function getAccessTokenMethod()
     {
         return self::METHOD_GET;
-    }
-
-    protected function getAccessTokenUrl(array $params)
-    {
-        // Untappd requires inclusion of additional params for verification
-        $params = array_replace($params, [
-            'client_id' => $this->clientId,
-            'client_secret' => $this->clientSecret,
-            'redirect_url' => $this->redirectUri,
-        ]);
-
-        return parent::getAccessTokenUrl($params);
     }
 
     protected function prepareAccessTokenResponse(array $result)
