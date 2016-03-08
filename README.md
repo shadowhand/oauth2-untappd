@@ -1,9 +1,8 @@
 # Untappd Provider for OAuth 2.0 Client
 
-[![Join the chat](https://img.shields.io/badge/gitter-join-1DCE73.svg)](https://gitter.im/shadowhand/oauth2-untappd)
 [![Build Status](https://img.shields.io/travis/shadowhand/oauth2-untappd.svg)](https://travis-ci.org/shadowhand/oauth2-untappd)
-[![Code Coverage](https://img.shields.io/coveralls/shadowhand/oauth2-untappd.svg)](https://coveralls.io/r/shadowhand/oauth2-untappd)
-[![Code Quality](https://img.shields.io/scrutinizer/g/shadowhand/oauth2-untappd.svg)](https://scrutinizer-ci.com/g/shadowhand/oauth2-untappd/)
+[![Code Coverage](https://scrutinizer-ci.com/g/shadowhand/oauth2-untappd/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/shadowhand/oauth2-untappd/?branch=master)
+[![Code Quality](https://scrutinizer-ci.com/g/shadowhand/oauth2-untappd/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/shadowhand/oauth2-untappd/?branch=master)
 [![License](https://img.shields.io/packagist/l/shadowhand/oauth2-untappd.svg)](https://github.com/shadowhand/oauth2-untappd/blob/master/LICENSE)
 [![Latest Stable Version](https://img.shields.io/packagist/v/shadowhand/oauth2-untappd.svg)](https://packagist.org/packages/shadowhand/oauth2-untappd)
 
